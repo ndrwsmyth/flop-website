@@ -1,0 +1,353 @@
+:root {
+  --cream: #fff9ed;
+  --ink: #152524;
+  --muted: #6d6252;
+  --teal: #24a7a1;
+  --teal-dark: #17726f;
+  --bill: #d87748;
+  --bill-dark: #9c472a;
+  --tail: #7f6344;
+  --line: rgba(21, 37, 36, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  overscroll-behavior: none;
+}
+
+body {
+  overflow: hidden;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Courier New", "Courier", monospace;
+}
+
+button {
+  font: inherit;
+}
+
+.stage {
+  position: relative;
+  isolation: isolate;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+  padding:
+    env(safe-area-inset-top)
+    env(safe-area-inset-right)
+    env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+  background:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px),
+    radial-gradient(circle at 18% 22%, rgba(36, 167, 161, 0.12), transparent 24rem),
+    var(--cream);
+  background-size: 28px 28px, 28px 28px, auto, auto;
+}
+
+.stage::before {
+  position: absolute;
+  inset: 18px;
+  z-index: -1;
+  border: 2px solid rgba(21, 37, 36, 0.2);
+  content: "";
+  pointer-events: none;
+}
+
+.copy {
+  width: min(760px, calc(100vw - 40px));
+  padding: clamp(44px, 9vw, 112px) 0 0 clamp(20px, 7vw, 92px);
+}
+
+.eyebrow {
+  max-width: 46ch;
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: clamp(0.75rem, 1.4vw, 0.95rem);
+  letter-spacing: 0;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(5.4rem, 18vw, 15rem);
+  font-weight: 700;
+  line-height: 0.78;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-shadow: 6px 6px 0 rgba(36, 167, 161, 0.23);
+}
+
+.dek {
+  max-width: 47ch;
+  margin: 28px 0 0;
+  color: #2f3e3b;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.screen-note {
+  position: absolute;
+  right: clamp(28px, 6vw, 92px);
+  bottom: clamp(28px, 6vw, 72px);
+  min-height: 44px;
+  padding: 13px 16px;
+  border: 2px solid var(--ink);
+  background: #fff3d8;
+  box-shadow: 4px 4px 0 var(--ink);
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.motion-toggle {
+  position: fixed;
+  top: calc(28px + env(safe-area-inset-top));
+  right: calc(28px + env(safe-area-inset-right));
+  z-index: 3;
+  width: 92px;
+  min-height: 44px;
+  padding: 12px 14px;
+  border: 2px solid var(--ink);
+  background: #fff3d8;
+  box-shadow: 4px 4px 0 var(--ink);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.88rem;
+  line-height: 1;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.motion-toggle:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.motion-toggle:focus-visible {
+  outline: 4px solid #f4b942;
+  outline-offset: 5px;
+}
+
+.platypus-button {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: var(--sprite-size, 144px);
+  height: var(--sprite-size, 144px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: grab;
+  image-rendering: pixelated;
+  touch-action: none;
+  transform-origin: 50% 62%;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
+}
+
+.platypus-button.is-grabbed {
+  cursor: grabbing;
+}
+
+.platypus-button.is-paused .platypus-sprite {
+  filter: drop-shadow(7px 8px 0 rgba(21, 37, 36, 0.22)) saturate(0.82);
+}
+
+.platypus-button:focus-visible {
+  outline: 4px solid #f4b942;
+  outline-offset: 8px;
+}
+
+.platypus-sprite,
+.platypus-sprite span {
+  position: absolute;
+  display: block;
+}
+
+.platypus-sprite {
+  inset: 0;
+  filter: drop-shadow(7px 8px 0 rgba(21, 37, 36, 0.22));
+}
+
+.body {
+  left: 31px;
+  top: 49px;
+  width: 78px;
+  height: 45px;
+  background: var(--teal);
+  box-shadow:
+    0 -9px 0 var(--teal-dark),
+    9px 0 0 var(--teal),
+    18px 9px 0 var(--teal-dark),
+    -9px 9px 0 var(--teal-dark),
+    0 45px 0 var(--teal-dark),
+    18px 45px 0 var(--teal-dark);
+}
+
+.body::before {
+  position: absolute;
+  left: 18px;
+  top: -18px;
+  width: 45px;
+  height: 18px;
+  background: var(--teal);
+  box-shadow: 9px 0 0 var(--teal-dark);
+  content: "";
+}
+
+.bill {
+  left: 94px;
+  top: 61px;
+  width: 36px;
+  height: 18px;
+  background: var(--bill);
+  box-shadow:
+    9px 9px 0 var(--bill),
+    0 18px 0 var(--bill-dark),
+    -9px 9px 0 var(--bill-dark);
+}
+
+.eye {
+  left: 82px;
+  top: 53px;
+  width: 9px;
+  height: 9px;
+  background: var(--ink);
+  box-shadow: 9px 0 0 #fff8e8;
+}
+
+.tail {
+  left: 13px;
+  top: 64px;
+  width: 27px;
+  height: 36px;
+  background: var(--tail);
+  box-shadow:
+    -9px 9px 0 var(--tail),
+    0 36px 0 #60472e,
+    9px 27px 0 #60472e;
+  transform: rotate(-20deg);
+}
+
+.feet {
+  top: 101px;
+  width: 27px;
+  height: 18px;
+  background: var(--bill);
+  box-shadow: 9px 9px 0 var(--bill-dark);
+}
+
+.foot-front {
+  left: 77px;
+}
+
+.foot-back {
+  left: 41px;
+}
+
+.platypus-button.is-booped .platypus-sprite {
+  animation: boop 420ms ease-out;
+}
+
+@keyframes boop {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  45% {
+    transform: scale(1.16, 0.78);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@media (hover: hover) {
+  .platypus-button:hover .platypus-sprite {
+    filter: drop-shadow(9px 10px 0 rgba(21, 37, 36, 0.24));
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --sprite-size: 132px;
+  }
+
+  .stage::before {
+    inset: 12px;
+  }
+
+  .copy {
+    width: min(100vw - 28px, 560px);
+    padding-top: 48px;
+    padding-left: 26px;
+  }
+
+  h1 {
+    font-size: clamp(4.6rem, 26vw, 8.5rem);
+  }
+
+  .dek {
+    max-width: 31ch;
+    margin-top: 20px;
+  }
+
+  .screen-note {
+    right: 22px;
+    bottom: 22px;
+    font-size: 0.78rem;
+  }
+
+  .motion-toggle {
+    top: calc(18px + env(safe-area-inset-top));
+    right: calc(18px + env(safe-area-inset-right));
+    width: 86px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --sprite-size: 120px;
+  }
+
+  .copy {
+    padding-left: 20px;
+  }
+
+  .eyebrow {
+    max-width: 38ch;
+    font-size: 0.68rem;
+  }
+
+  .dek {
+    max-width: 29ch;
+    font-size: 0.94rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .platypus-button {
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%) rotate(-8deg);
+  }
+
+  .platypus-button.is-booped .platypus-sprite {
+    animation: none;
+  }
+}
