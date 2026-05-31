@@ -163,7 +163,7 @@ h1 {
 }
 
 .platypus-button.is-paused .platypus-sprite {
-  filter: drop-shadow(7px 8px 0 rgba(21, 37, 36, 0.22)) saturate(0.82);
+  opacity: 0.86;
 }
 
 .platypus-button:focus-visible {
@@ -171,91 +171,50 @@ h1 {
   outline-offset: 8px;
 }
 
-.platypus-sprite,
-.platypus-sprite span {
-  position: absolute;
-  display: block;
-}
-
 .platypus-sprite {
-  inset: 0;
-  filter: drop-shadow(7px 8px 0 rgba(21, 37, 36, 0.22));
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
-.body {
-  left: 31px;
-  top: 49px;
-  width: 78px;
-  height: 45px;
-  background: var(--teal);
-  box-shadow:
-    0 -9px 0 var(--teal-dark),
-    9px 0 0 var(--teal),
-    18px 9px 0 var(--teal-dark),
-    -9px 9px 0 var(--teal-dark),
-    0 45px 0 var(--teal-dark),
-    18px 45px 0 var(--teal-dark);
+.sprite-shadow {
+  fill: rgba(21, 37, 36, 0.22);
+  transform: translate(1px, 1px);
 }
 
-.body::before {
-  position: absolute;
-  left: 18px;
-  top: -18px;
-  width: 45px;
-  height: 18px;
-  background: var(--teal);
-  box-shadow: 9px 0 0 var(--teal-dark);
-  content: "";
+.sprite-body {
+  fill: var(--teal);
 }
 
-.bill {
-  left: 94px;
-  top: 61px;
-  width: 36px;
-  height: 18px;
-  background: var(--bill);
-  box-shadow:
-    9px 9px 0 var(--bill),
-    0 18px 0 var(--bill-dark),
-    -9px 9px 0 var(--bill-dark);
+.sprite-body-dark {
+  fill: var(--teal-dark);
 }
 
-.eye {
-  left: 82px;
-  top: 53px;
-  width: 9px;
-  height: 9px;
-  background: var(--ink);
-  box-shadow: 9px 0 0 #fff8e8;
+.sprite-bill,
+.sprite-foot {
+  fill: var(--bill);
 }
 
-.tail {
-  left: 13px;
-  top: 64px;
-  width: 27px;
-  height: 36px;
-  background: var(--tail);
-  box-shadow:
-    -9px 9px 0 var(--tail),
-    0 36px 0 #60472e,
-    9px 27px 0 #60472e;
-  transform: rotate(-20deg);
+.sprite-bill-dark,
+.sprite-foot-dark {
+  fill: var(--bill-dark);
 }
 
-.feet {
-  top: 101px;
-  width: 27px;
-  height: 18px;
-  background: var(--bill);
-  box-shadow: 9px 9px 0 var(--bill-dark);
+.sprite-tail {
+  fill: var(--tail);
 }
 
-.foot-front {
-  left: 77px;
+.sprite-tail-dark {
+  fill: #60472e;
 }
 
-.foot-back {
-  left: 41px;
+.sprite-eye {
+  fill: var(--ink);
+}
+
+.sprite-eye-shine {
+  fill: #fff8e8;
 }
 
 .platypus-button.is-booped .platypus-sprite {
@@ -278,7 +237,7 @@ h1 {
 
 @media (hover: hover) {
   .platypus-button:hover .platypus-sprite {
-    filter: drop-shadow(9px 10px 0 rgba(21, 37, 36, 0.24));
+    opacity: 0.94;
   }
 }
 

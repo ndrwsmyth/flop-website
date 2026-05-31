@@ -406,14 +406,40 @@ export function FloppingPlatypus() {
         onPointerCancel={handlePointerCancel}
         onLostPointerCapture={handleLostPointerCapture}
       >
-        <span className="platypus-sprite" aria-hidden="true">
-          <span className="tail" />
-          <span className="body" />
-          <span className="bill" />
-          <span className="eye" />
-          <span className="feet foot-front" />
-          <span className="feet foot-back" />
-        </span>
+        <svg
+          className="platypus-sprite"
+          viewBox="0 0 16 16"
+          aria-hidden="true"
+          role="img"
+          shapeRendering="crispEdges"
+        >
+          <path
+            className="sprite-shadow"
+            d="M3 8h1v-1h1v-2h1v-1h5v1h1v1h2v1h1v2h-1v1h-1v2h-1v1h-1v1h-6v-1h-1v-1h-1v1h-2v-1h1v-2h-1v-1h1z"
+          />
+          <path
+            className="sprite-tail"
+            d="M2 8h2v1h1v2h-1v1h-2v-1h-1v-2h1z"
+          />
+          <path
+            className="sprite-tail-dark"
+            d="M1 10h1v1h2v1h-2v1h-1z"
+          />
+          <path
+            className="sprite-body"
+            d="M5 5h6v1h1v1h1v4h-1v1h-1v1h-6v-1h-1v-1h-1v-4h1v-1h1z"
+          />
+          <path
+            className="sprite-body-dark"
+            d="M4 10h1v1h1v1h6v1h-7v-1h-1zM10 5h1v1h1v1h-2z"
+          />
+          <path className="sprite-bill" d="M11 7h3v1h1v2h-1v1h-3v-1h-1v-2h1z" />
+          <path className="sprite-bill-dark" d="M10 9h1v1h3v1h-4z" />
+          <path className="sprite-foot" d="M6 11h2v2h-2zM10 11h2v2h-2z" />
+          <path className="sprite-foot-dark" d="M6 12h2v1h-2zM10 12h2v1h-2z" />
+          <path className="sprite-eye" d="M8 6h1v1h-1z" />
+          <path className="sprite-eye-shine" d="M9 6h1v1h-1z" />
+        </svg>
       </button>
     </>
   );
