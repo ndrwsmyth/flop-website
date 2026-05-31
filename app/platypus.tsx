@@ -37,6 +37,35 @@ const WALL_RESTITUTION = 0.86;
 const WALL_FRICTION = 0.97;
 const MIN_IDLE_SPEED = 86;
 const MAX_THROW_SPEED = 920;
+const SPRITE_PIXELS = [
+  "................",
+  "................",
+  "................",
+  "......dddddd....",
+  ".....tttttdd....",
+  "....ttttttbbo...",
+  "...ttttttebbbo..",
+  "..aattttttbbbo..",
+  ".aaatttttttb....",
+  "..aattttttt.....",
+  "...tttddttt.....",
+  "....tffddff.....",
+  ".....ffddff.....",
+  "....ssttt.......",
+  "...ss...........",
+  "................",
+] as const;
+
+const PIXEL_CLASS_NAMES: Record<string, string> = {
+  a: "pixel-tail",
+  b: "pixel-bill",
+  d: "pixel-teal-dark",
+  e: "pixel-eye",
+  f: "pixel-foot",
+  o: "pixel-bill-dark",
+  s: "pixel-tail-dark",
+  t: "pixel-teal",
+};
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
@@ -406,40 +435,16 @@ export function FloppingPlatypus() {
         onPointerCancel={handlePointerCancel}
         onLostPointerCapture={handleLostPointerCapture}
       >
-        <svg
-          className="platypus-sprite"
-          viewBox="0 0 16 16"
-          aria-hidden="true"
-          role="img"
-          shapeRendering="crispEdges"
-        >
-          <path
-            className="sprite-shadow"
-            d="M3 8h1v-1h1v-2h1v-1h5v1h1v1h2v1h1v2h-1v1h-1v2h-1v1h-1v1h-6v-1h-1v-1h-1v1h-2v-1h1v-2h-1v-1h1z"
-          />
-          <path
-            className="sprite-tail"
-            d="M2 8h2v1h1v2h-1v1h-2v-1h-1v-2h1z"
-          />
-          <path
-            className="sprite-tail-dark"
-            d="M1 10h1v1h2v1h-2v1h-1z"
-          />
-          <path
-            className="sprite-body"
-            d="M5 5h6v1h1v1h1v4h-1v1h-1v1h-6v-1h-1v-1h-1v-4h1v-1h1z"
-          />
-          <path
-            className="sprite-body-dark"
-            d="M4 10h1v1h1v1h6v1h-7v-1h-1zM10 5h1v1h1v1h-2z"
-          />
-          <path className="sprite-bill" d="M11 7h3v1h1v2h-1v1h-3v-1h-1v-2h1z" />
-          <path className="sprite-bill-dark" d="M10 9h1v1h3v1h-4z" />
-          <path className="sprite-foot" d="M6 11h2v2h-2zM10 11h2v2h-2z" />
-          <path className="sprite-foot-dark" d="M6 12h2v1h-2zM10 12h2v1h-2z" />
-          <path className="sprite-eye" d="M8 6h1v1h-1z" />
-          <path className="sprite-eye-shine" d="M9 6h1v1h-1z" />
-        </svg>
+        <span className="platypus-sprite" aria-hidden="true">
+          {SPRITE_PIXELS.flatMap((row, rowIndex) =>
+            Array.from(row).map((pixel, columnIndex) => (
+              <span
+                className={`sprite-pixel ${PIXEL_CLASS_NAMES[pixel] ?? ""}`}
+                key={`${rowIndex}-${columnIndex}`}
+              />
+            )),
+          )}
+        </span>
       </button>
     </>
   );

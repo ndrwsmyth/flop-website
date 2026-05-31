@@ -172,49 +172,46 @@ h1 {
 }
 
 .platypus-sprite {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
+  width: 100%;
+  height: 100%;
+}
+
+.sprite-pixel {
   display: block;
   width: 100%;
   height: 100%;
-  overflow: visible;
 }
 
-.sprite-shadow {
-  fill: rgba(21, 37, 36, 0.22);
-  transform: translate(1px, 1px);
+.pixel-teal {
+  background: #24a7a1;
 }
 
-.sprite-body {
-  fill: var(--teal);
+.pixel-teal-dark {
+  background: #17726f;
 }
 
-.sprite-body-dark {
-  fill: var(--teal-dark);
+.pixel-bill,
+.pixel-foot {
+  background: #d87748;
 }
 
-.sprite-bill,
-.sprite-foot {
-  fill: var(--bill);
+.pixel-bill-dark {
+  background: #9c472a;
 }
 
-.sprite-bill-dark,
-.sprite-foot-dark {
-  fill: var(--bill-dark);
+.pixel-tail {
+  background: #7f6344;
 }
 
-.sprite-tail {
-  fill: var(--tail);
+.pixel-tail-dark {
+  background: #60472e;
 }
 
-.sprite-tail-dark {
-  fill: #60472e;
-}
-
-.sprite-eye {
-  fill: var(--ink);
-}
-
-.sprite-eye-shine {
-  fill: #fff8e8;
+.pixel-eye {
+  background: #152524;
 }
 
 .platypus-button.is-booped .platypus-sprite {
